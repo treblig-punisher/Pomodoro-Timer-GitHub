@@ -1,0 +1,264 @@
+:root{
+     --textButtonHeight: 70px;
+     --textButtonFontSize: 2rem;
+     --timerDarkColor: #2a242c;
+     --timerLighterColor: #414141;
+     --backButtonDarkColor: #44043a;
+     --backButtonLightColor: #6b209c;
+}
+body{
+    padding: 0;
+    margin: 0;
+    font-size: 18px;
+    font-family: 'Bebas Neue', cursive;
+}
+.wrapper{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    background-color: #2B2A30;
+    width: auto;
+    height: 100vh;
+}
+
+.circle{
+    width:  700px;
+    height: 700px;
+    border-radius: 50%;
+    
+}
+
+
+
+.black{
+    background-color: black;
+    /* filter: drop-shadow(0 -0.9rem 0.6rem rgba(255, 255, 255, 1)); */
+    filter: drop-shadow(0 0 0.75rem rgba(0, 0, 0, 0.808));
+    filter:blur(0);
+    transition: filter 0.6s;
+}
+
+.red{
+    background-color: #23ce1d;;
+    transition: background-color 0.2s ease;
+    /* #900A0A; */
+}
+
+.grey{
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    background: radial-gradient(#3A393F, #17171A);
+    filter: drop-shadow(0 0 0.2rem rgba(54, 0, 0, 0.931));
+    transform: scale(0.97);
+    
+}
+
+.gear-icon{
+
+    /* align-self:center; */
+    display: flex;
+    width: 40px;
+    height: 40px;
+    align-self: center;
+    background-image: url("gear.svg");
+    background-position: center;
+    background-repeat: no-repeat;
+    transform-origin: center;
+    transform: scale(2.1);
+    
+    transition: transform .1s;
+    
+}
+
+.clock{
+   margin: 20px 0;
+   color: aliceblue;
+}
+
+.clock-wrapper{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    
+
+}
+.counter{
+    display: block;
+    position: absolute;
+    text-shadow: 2px 2px 2px rgb(0, 0, 0);
+    margin-top: -550px;
+    font-size: 8rem;
+    font-family: 'Bebas Neue', cursive;
+    
+}
+
+.button-counter{
+    font-size: 2.5rem;
+    color:aliceblue;
+    text-shadow: 1px 1px 1px rgb(0, 0, 0);
+    transition: transform .2s, color .3s;
+}
+
+.button-counter:hover{
+    cursor: pointer;
+    
+    transform: scale(1.3);
+}
+
+.gear-icon:hover{
+    fill: aqua;
+    transform: scale(2.8);
+    cursor: pointer;
+
+}
+
+.button-counter:hover{
+    color:aqua;
+    transform: scale(1.5);
+    
+}
+
+@keyframes slideDown {
+    from{
+        top: -800px;
+    }
+    to{
+        top: 0;
+    }
+}
+.options-menu{
+    display:none;   
+    position: absolute;
+    top: 0;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;   
+    background-color: #010113da;
+    animation-duration: 0.3s;
+    animation-name: slideDown;
+    animation-timing-function: ease-out;
+  
+    /* filter: blur(50px); */
+}
+
+/* .options-menu:: .black{
+    filter: blur(20px);
+} */
+.minutes-option{
+    
+    color:antiquewhite;
+    width: 200px;
+    height:  var(--textButtonHeight);
+    background-color: var(--timerDarkColor);
+    border-radius: 10px;
+    margin-right: 20px;
+    transition: transform 0.2s, background-color 0.2s;
+}
+
+.seconds-option{
+    color:antiquewhite;
+    width: 200px;
+    height: var(--textButtonHeight);
+    /* margin-right: 20px; */
+    background-color: var(--timerDarkColor);
+    border-radius: 10px;
+    transition: transform 0.2s, background-color 0.2s;
+}
+
+@media (min-width: 1080px)
+{
+    .back-button{
+        display:block;
+        position: absolute;
+        right: 97vh;
+        top: 60vh;
+        color:rgb(98, 121, 252);
+        width: fit-content;
+        height: fit-content;
+        padding: 10px 30px;
+        font-size: 1.2rem;
+        box-shadow: 2px 2px 2px rgb(0, 0, 0);
+        
+        background-color: var(--backButtonDarkColor);
+        border-radius: 5px;
+        transition: transform 0.2s;
+        
+    }
+}
+.minutes-option, .seconds-option{
+    font-size: var(--textButtonFontSize);
+    padding-top: 20px;
+    box-shadow: 2px 2px 2px rgb(0, 0, 0);
+    text-align: center;
+    overflow: hidden;
+   
+}
+.minutes-option:hover, .seconds-option:hover {
+    transform: scale(1.1);
+    cursor: pointer; 
+    /* background-color: var(--timerLighterColor); */
+}
+
+.back-button:hover{
+    transform: scale(1.2);
+    cursor: pointer; 
+    background-color: var(--backButtonLightColor);
+}
+
+
+@media (min-width: 1920px) {
+    .back-button{
+        display:block;
+        position: absolute;
+        right: 95vh;
+        top: 60vh;
+        color:rgb(98, 121, 252);
+        width: fit-content;
+        height: fit-content;
+        padding: 10px 30px;
+        font-size: 1.2rem;
+    
+        
+        background-color: var(--backButtonDarkColor);
+        border-radius: 5px;
+        transition: transform 0.2s, background-color 0.3s;
+        
+    }
+}
+
+label:first-child{
+    display:block;
+    position: fixed;
+    font-size: 2rem;
+    color: aqua;
+    margin-top: -140px;
+    margin-left: -300px;
+    
+}
+
+label:nth-child(2){
+    display:block;
+    position: fixed;
+    font-size: 2rem;
+    color: aqua;
+    margin-top: -140px;
+    margin-left: 140px;
+}
+
+[data-button-selected ~= true]{
+    color:#3A393F;
+    background-color: aliceblue;
+}
+
+.description-credits{
+    display: block;
+    color: rgb(142, 236, 240);
+    position:absolute;
+    right: 50px;
+    bottom: 20px;
+    font-size: 1.2rem;
+}
