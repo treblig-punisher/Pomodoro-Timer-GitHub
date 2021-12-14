@@ -11,13 +11,13 @@ let timerObject ={
     currentState: "isIdle",
     currentTime: 0,
     setStartingTime: function(){
-        startingTime = seconds < 10 ?`${minutes}:0${seconds}`:`${minutes}:${seconds}`;
+        startingTime = seconds < 10? `${Math.abs(minutes)}:0${Math.abs(seconds)}`: `${Math.abs(minutes)}:${Math.abs(seconds)}`;
         document.querySelector("div.clock.counter").textContent = startingTime;
     },
     updateCurrentTime: function()
     {
 
-        let timeNow = seconds < 10? `${minutes}:0${seconds}`: `${minutes}:${seconds}`;
+        let timeNow = seconds < 10? `${Math.abs(minutes)}:0${Math.abs(seconds)}`: `${Math.abs(minutes)}:${Math.abs(seconds)}`;
         document.querySelector("div.clock.counter").textContent = timeNow;
     },
     countDown: function()
@@ -43,15 +43,15 @@ let timerObject ={
             }
         }
         
-        document.querySelector("div.clock.counter").textContent = seconds < 10? `${minutes}:0${seconds}`: `${minutes}:${seconds}`;
-        console.log(minutes);
+        document.querySelector("div.clock.counter").textContent = seconds < 10? `${Math.abs(minutes)}:0${Math.abs(seconds)}`: `${Math.abs(minutes)}:${Math.abs(seconds)}`;
+        // console.log(minutes);
     },
     // beginInterval: setInterval(this.countDown, 1000),
     timerFinished: function(refName){
         clearInterval(refName);
     },
 
-    manageTimerBehavior: function(){
+    manageTimerBehavior(){
         switch(this.currentState){
             case "isIdle":
                  clearInterval(timerCountDownStart);
@@ -60,7 +60,7 @@ let timerObject ={
 
             case "isRunning":
                 //  this.countDown();
-                this.updateCurrentTime(minutes, seconds);
+                this.updateCurrentTime();
                 document.querySelector(".clock.button-counter").textContent = "Stop";
                 timerCountDownStart = setInterval(this.countDown, 1000);
 
@@ -94,8 +94,8 @@ timerObject.setStartingTime();
 function restartTimer(){
     
 }
-console.log(timerObject.stateIndex);
-console.log(timerObject.currentState);
+// console.log(timerObject.stateIndex);
+// console.log(timerObject.currentState);
 
 function buttonClicked()
 {
@@ -105,8 +105,8 @@ function buttonClicked()
         timerObject.stateIndex ++;
         timerObject.setState(timerObject.timerState[timerObject.stateIndex]);
         timerObject.manageTimerBehavior();
-        console.log(timerObject.currentState);
-        console.log(timerObject.stateIndex);
+        // console.log(timerObject.currentState);
+        // console.log(timerObject.stateIndex);
         
     }
     else{
@@ -114,18 +114,13 @@ function buttonClicked()
         timerObject.stateIndex = 0;
         timerObject.setState(timerObject.timerState[timerObject.stateIndex]);
         timerObject.manageTimerBehavior();
-        console.log(timerObject.stateIndex);
-        console.log(timerObject.currentState);
     }
 }
 
 function gearButtonClicked()
 {
-    console.log("clicked");
     var getCircleContainer = document.querySelector(".circle.black");
     getCircleContainer.style.webkitFilter = "blur(20px)";
-    // var getOptionsMenu = document.querySelector(".options-menu");
-    // getOptionsMenu.style.top = "0";
     
     var gearButton = document.querySelector(".options-menu");
     gearButton.style.display = "flex";
@@ -143,7 +138,6 @@ function disableOptionsMenu(){
     
     var getMinutes = document.querySelector(".minutes-option");
     var getSeconds = document.querySelector(".seconds-option");
-    // parse
     if(parseInt(getMinutes.innerHTML) || parseInt(getSeconds.innerHTML) && !isNaN(getMinutes.innerHTML) && !isNaN(getSeconds.innerHTML))
     {
         minutes = parseInt(getMinutes.innerHTML) > 60? 60: parseInt(getMinutes.innerHTML);

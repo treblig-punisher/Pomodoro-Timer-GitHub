@@ -273,7 +273,7 @@ body{
 .back-button{
     display:block;
     position: absolute;
-    right: cal(40vw/2);
+    
     top: 60vh;
     color:rgb(98, 121, 252);
     width: fit-content;
