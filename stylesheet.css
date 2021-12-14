@@ -11,15 +11,30 @@ body{
     margin: 0;
     font-size: 18px;
     font-family: 'Bebas Neue', cursive;
+    background-color: #2B2A30;
 }
+
 .wrapper{
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    background-color: #2B2A30;
+   
     width: auto;
     height: 100vh;
+}
+@media (max-width: 400px)
+{
+    .wrapper{
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        
+        width: auto;
+        height: 100vh;
+        transform: scale(0.5);
+    }
 }
 
 .circle{
