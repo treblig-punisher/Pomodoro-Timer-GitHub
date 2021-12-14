@@ -4,6 +4,8 @@ let seconds = 10;
 let lastButtonClicked = undefined;
 const alarmOverSound = new Audio("AlarmOverSound.wav");
 
+// let something = window.prompt("insert your desired time: ");
+// console.log(something);
 let timerObject ={
     stateIndex: 0,
     startingTime: "",
@@ -87,19 +89,14 @@ let timerObject ={
 timerObject.setStartingTime();
 
 // timerObject.currentTime = timerObject.startingTime.;
-
-
-
-
-function restartTimer(){
+// function restartTimer(){
     
-}
+// }
 // console.log(timerObject.stateIndex);
 // console.log(timerObject.currentState);
 
 function buttonClicked()
-{
-  
+{  
     if(timerObject.stateIndex < timerObject.timerState.length-2)
     {
         timerObject.stateIndex ++;
@@ -138,19 +135,26 @@ function disableOptionsMenu(){
     
     var getMinutes = document.querySelector(".minutes-option");
     var getSeconds = document.querySelector(".seconds-option");
-    if(parseInt(getMinutes.innerHTML) || parseInt(getSeconds.innerHTML) && !isNaN(getMinutes.innerHTML) && !isNaN(getSeconds.innerHTML))
+    if(parseInt(getMinutes.innerHTML) != NaN && parseInt(getSeconds.innerHTML) != NaN)
     {
-        minutes = parseInt(getMinutes.innerHTML) > 60? 60: parseInt(getMinutes.innerHTML);
-        seconds = parseInt(getSeconds.innerHTML) > 59? 59: parseInt(getSeconds.innerHTML);
-        timerObject.updateCurrentTime();
-        const redRing = document.querySelector(".red");
-        redRing.style.backgroundColor = "#23ce1d";
-        timerObject.stateIndex = 0;
-        timerObject.currentState = timerObject.timerState[timerObject.stateIndex]
-        // alert("Success!");
+        if(parseInt(getMinutes.innerHTML) || parseInt(getSeconds.innerHTML) && !isNaN(getMinutes.innerHTML) && !isNaN(getSeconds.innerHTML))
+        {
+            minutes = parseInt(getMinutes.innerHTML) > 60? 60: parseInt(getMinutes.innerHTML);
+            seconds = parseInt(getSeconds.innerHTML) > 59? 59: parseInt(getSeconds.innerHTML);
+            timerObject.updateCurrentTime();
+            const redRing = document.querySelector(".red");
+            redRing.style.backgroundColor = "#23ce1d";
+            timerObject.stateIndex = 0;
+            timerObject.currentState = timerObject.timerState[timerObject.stateIndex]
+            // alert("Success!");
+        }
+        else{
+            alert("wrong input, use numbers only!");
+        }
     }
     else{
-        alert("wrong input, use numbers only!");
+            getMinutes.innerHTML = "0";
+            getSeconds.innerHTML = "00";
     }
 }
 
@@ -171,7 +175,9 @@ function setTimeButtonClicked(elementClassName)
         
         // alert(getButtonId);
         const newTime = window.prompt("insert your desired time: ");
-        elementClassName.innerHTML = newTime === ""? 0: newTime;
+        const newFormattedTime = newTime === ""? 0: newTime === null? 0: newTime;
+
+        elementClassName.innerHTML = newFormattedTime === 0? '00': newFormattedTime;
         // console.log(elementClassName.style);
         elementClassName.setAttribute("data-button-selected", "true");
         lastButtonClicked = elementClassName;
