@@ -1,6 +1,6 @@
 let timerCountDownStart;
-let minutes = 0
-let seconds = 0
+let minutes = 0;
+let seconds = 10;
 let lastButtonClicked = undefined;
 const alarmOverSound = new Audio("AlarmOverSound.wav");
 
